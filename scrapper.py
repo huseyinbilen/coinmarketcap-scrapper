@@ -10,12 +10,21 @@ table = soup.find("table", {"class": "sc-beb003d5-3 ieTeVa cmc-table"})
 
 header = []
 rows = []
+data = []
 for i, row in enumerate(table.find_all('tr')):
     if i == 0:
         header = [el.text.strip() for el in row.find_all('th')]
+        del header[0]
+        del header[0]
+        del header[len(header)-1]
     else:
         rows.append([el.text.strip() for el in row.find_all('td')])
 
-print(header)
 for row in rows:
-    print(row)
+    temp = {
+        "name": row[2],
+        "price": row[3]
+    }
+    data.append(temp)
+
+print(data)
