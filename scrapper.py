@@ -1,5 +1,6 @@
 from bs4 import BeautifulSoup
 import requests
+import json
 
 url = "https://coinmarketcap.com"
 
@@ -27,4 +28,7 @@ for row in rows:
     }
     data.append(temp)
 
-print(data)
+with open('result.json', 'w') as fp:
+    json.dump(data, fp)
+
+print("JSON File Created!")
